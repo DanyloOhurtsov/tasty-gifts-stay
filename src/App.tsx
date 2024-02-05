@@ -6,7 +6,15 @@ import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { authProvider, dataProvider, liveProvider } from "./providers";
-import { Home, ForgotPassword, Login, Register, CompanyList, CreateComp, EditPage } from "./pages";
+import {
+    Home,
+    ForgotPassword,
+    Login,
+    Register,
+    CompanyList,
+    CreateComp,
+    EditPage,
+} from "./pages";
 
 import routerBindings, {
     CatchAllNavigate,

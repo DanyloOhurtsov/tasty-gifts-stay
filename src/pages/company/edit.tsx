@@ -1,17 +1,17 @@
 import { Col, Form, Input, InputNumber, Row, Select } from "antd";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { UPDATE_COMPANY_MUTATION } from "@/graphql/mutations";
-import CustomAvatar from "@/components/CustomAvatar";
 import { getNameInitials } from "@/utilities";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { UsersSelectQuery } from "@/graphql/types";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
-import { SelectOptionWithAvatar } from "@/components";
+import { SelectOptionWithAvatar, CustomAvatar } from "@/components";
 import {
     businessTypeOptions,
     companySizeOptions,
     industryOptions,
 } from "@/constants";
+import { CompanyContactsTable } from "./contactTable";
 
 export const EditPage = () => {
     const { saveButtonProps, formProps, formLoading, queryResult } = useForm({
@@ -104,6 +104,9 @@ export const EditPage = () => {
                             </Form.Item>
                         </Form>
                     </Edit>
+                </Col>
+                <Col xs={24} xl={12}>
+                    <CompanyContactsTable />
                 </Col>
             </Row>
         </div>

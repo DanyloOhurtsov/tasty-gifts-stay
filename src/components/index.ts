@@ -8,6 +8,9 @@ import ProjectCardSkeleton from "./skeleton/project-card";
 import DashboardTotalCountCard from "./home/DashboardTotalCountCard";
 import DashboardLatestActivities from "./home/DashboardLatestActivities";
 import SelectOptionWithAvatar from "./SelectOptionWithAvatar";
+import CustomAvatar from "./CustomAvatar";
+import { ContactStatusTag } from "./tags/ContactStatusTag";
+import { Text } from "./text";
 
 export {
     UpcomingEvents,
@@ -20,4 +23,7 @@ export {
     DashboardTotalCountCard,
     DashboardLatestActivities,
     SelectOptionWithAvatar,
+    CustomAvatar,
+    ContactStatusTag,
+    Text,
 };
