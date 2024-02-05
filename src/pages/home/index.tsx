@@ -1,4 +1,5 @@
 import {
+    DashboardLatestActivities,
     DashboardTotalCountCard,
     DealsChart,
     UpcomingEvents,
@@ -49,7 +50,7 @@ export const Home = () => {
                     sm={24}
                     xl={8}
                     style={{
-                        height: "460px",
+                        height: "430px",
                     }}
                 >
                     <UpcomingEvents />
@@ -59,11 +60,17 @@ export const Home = () => {
                     sm={24}
                     xl={16}
                     style={{
-                        height: "460px",
+                        height: "430px",
                     }}
                 >
                     <DealsChart />
                 </Col>
+            </Row>
+
+            <Row gutter={[32, 32]} style={{marginTop: '32px'}}>
+                    <Col xs={24}>
+                        <DashboardLatestActivities />
+                    </Col>
             </Row>
         </div>
     );
