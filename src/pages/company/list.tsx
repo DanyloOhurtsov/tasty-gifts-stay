@@ -2,6 +2,7 @@ import CustomAvatar from "@/components/CustomAvatar";
 import { Text } from "@/components/text";
 import { COMPANIES_LIST_QUERY } from "@/graphql/queries";
 import { Company } from "@/graphql/schema.types";
+import { currencyNumber } from "@/utilities";
 import { SearchOutlined } from "@ant-design/icons";
 import { CreateButton, FilterDropdown, List, useTable } from "@refinedev/antd";
 import { getDefaultFilter, useGo } from "@refinedev/core";
@@ -62,6 +63,17 @@ export const CompanyList = () => {
                                 {record.name}
                             </Text>
                         </Space>
+                    )}
+                />
+                <Table.Column<Company>
+                    dataIndex="totalRevenue"
+                    title="Open deals amount"
+                    render={(value, company) => (
+                        <Text>
+                            {(currencyNumber(
+                                company?.dealsAggregate?.[0].sum?.value || 0
+                            ))}
+                        </Text>
                     )}
                 />
             </Table>
