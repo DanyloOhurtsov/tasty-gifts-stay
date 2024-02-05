@@ -40,7 +40,8 @@
         "vite-tsconfig-paths": "^4.3.1"
     },
     "scripts": {
-        "dev": "vite --host",
+        "dev": "refine dev",
+        "host": "vite --host",
         "build": "tsc && refine build",
         "preview": "refine start",
         "refine": "refine",
