@@ -7,18 +7,17 @@ import LatestActivitiesSkeleton from "./skeleton/latest-activities";
 import ProjectCardSkeleton from "./skeleton/project-card";
 import DashboardTotalCountCard from "./home/DashboardTotalCountCard";
 import DashboardLatestActivities from "./home/DashboardLatestActivities";
+import SelectOptionWithAvatar from "./SelectOptionWithAvatar";
 
 export {
     UpcomingEvents,
     DealsChart,
-    
     UpcomingEventsSkeleton,
     AccordionHeaderSkeleton,
     KanbanColumnSkeleton,
     LatestActivitiesSkeleton,
     ProjectCardSkeleton,
-
     DashboardTotalCountCard,
-
-    DashboardLatestActivities
+    DashboardLatestActivities,
+    SelectOptionWithAvatar,
 };
