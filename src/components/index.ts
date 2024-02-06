@@ -11,19 +11,31 @@ import SelectOptionWithAvatar from "./SelectOptionWithAvatar";
 import CustomAvatar from "./CustomAvatar";
 import { ContactStatusTag } from "./tags/ContactStatusTag";
 import { Text } from "./text";
+import KanbanColumn from "./tasks/kanban/column";
+import { KanbanBoardContainer, KanbanBoard } from "./tasks/kanban/board";
+import KanbanItem from "./tasks/kanban/item";
 
 export {
+    // Charts
     UpcomingEvents,
     DealsChart,
+    // Skeleton
     UpcomingEventsSkeleton,
     AccordionHeaderSkeleton,
     KanbanColumnSkeleton,
     LatestActivitiesSkeleton,
     ProjectCardSkeleton,
+    // Dashboard
     DashboardTotalCountCard,
     DashboardLatestActivities,
+    // Custom Reuse elements
     SelectOptionWithAvatar,
     CustomAvatar,
     ContactStatusTag,
     Text,
+    // Kanban
+    KanbanBoardContainer,
+    KanbanBoard,
+    KanbanColumn,
+    KanbanItem,
 };

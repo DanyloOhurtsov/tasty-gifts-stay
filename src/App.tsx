@@ -25,6 +25,7 @@ import { App as AntdApp } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
 import { resources } from "./config/resources";
+import ListTasks from "./pages/tasks";
 
 function App() {
     return (
@@ -85,6 +86,9 @@ function App() {
                                             path="edit/:id"
                                             element={<EditPage />}
                                         />
+                                    </Route>
+                                    <Route path="/tasks">
+                                        <Route index element={<ListTasks />} />
                                     </Route>
                                 </Route>
                             </Routes>
