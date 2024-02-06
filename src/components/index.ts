@@ -14,6 +14,7 @@ import { Text } from "./text";
 import KanbanColumn from "./tasks/kanban/column";
 import { KanbanBoardContainer, KanbanBoard } from "./tasks/kanban/board";
 import KanbanItem from "./tasks/kanban/item";
+import ProjectCard from "./tasks/kanban/card";
 
 export {
     // Charts
@@ -38,4 +39,5 @@ export {
     KanbanBoard,
     KanbanColumn,
     KanbanItem,
+    ProjectCard,
 };

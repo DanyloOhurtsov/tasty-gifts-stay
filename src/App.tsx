@@ -25,7 +25,7 @@ import { App as AntdApp } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
 import { resources } from "./config/resources";
-import ListTasks from "./pages/tasks";
+import ListTasks from "./pages/tasks/list";
 
 function App() {
     return (
