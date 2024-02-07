@@ -35,7 +35,7 @@ const ProjectCard = ({ id, title, dueDate, users }: Props) => {
                 danger: true,
                 label: "Delete card",
                 key: 2,
-                icon: <DeleteOutlined/>,
+                icon: <DeleteOutlined />,
                 onClick: () => {},
             },
         ];
@@ -67,7 +67,7 @@ const ProjectCard = ({ id, title, dueDate, users }: Props) => {
                             items: dropdownItems,
                         }}
                         placement="bottom"
-                        arrow={{pointAtCenter: true}}
+                        arrow={{ pointAtCenter: true }}
                     >
                         <Button
                             type="text"
@@ -79,17 +79,26 @@ const ProjectCard = ({ id, title, dueDate, users }: Props) => {
                                     }}
                                 />
                             }
-                            onPointerDown={(event)=> {
-                                event.stopPropagation()
+                            onPointerDown={(event) => {
+                                event.stopPropagation();
                             }}
-                            onClick={(event)=> {
-                                event.stopPropagation()
+                            onClick={(event) => {
+                                event.stopPropagation();
                             }}
                         />
                     </Dropdown>
                 }
             >
-                
+                <div
+                    style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        alignItems:'center',
+                        gap:'8px'
+                    }}
+                >
+                    
+                </div>
             </Card>
         </ConfigProvider>
     );
