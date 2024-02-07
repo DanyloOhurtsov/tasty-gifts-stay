@@ -15,6 +15,8 @@ import KanbanColumn from "./tasks/kanban/column";
 import { KanbanBoardContainer, KanbanBoard } from "./tasks/kanban/board";
 import KanbanItem from "./tasks/kanban/item";
 import ProjectCard from "./tasks/kanban/card";
+import { TextIcon, TextIconSvg } from "./TextIcon";
+import KanbanAddCardButton from "./tasks/kanban/KanbanAddCardButton";
 
 export {
     // Charts
@@ -34,10 +36,14 @@ export {
     CustomAvatar,
     ContactStatusTag,
     Text,
+    // Text Icon
+    TextIcon,
+    TextIconSvg,
     // Kanban
     KanbanBoardContainer,
     KanbanBoard,
     KanbanColumn,
     KanbanItem,
     ProjectCard,
+    KanbanAddCardButton
 };

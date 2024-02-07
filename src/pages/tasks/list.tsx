@@ -4,7 +4,9 @@ import {
     KanbanBoard,
     KanbanItem,
     ProjectCard,
+    KanbanAddCardButton,
 } from "@/components";
+import { ProjectCardMemo } from "@/components/tasks/kanban/card";
 import { TASKS_QUERY, TASK_STAGES_QUERY } from "@/graphql/queries";
 import { TaskStage } from "@/graphql/schema.types";
 import { TasksQuery } from "@/graphql/types";
@@ -56,6 +58,7 @@ const ListTasks = () => {
 
     const taskStages = React.useMemo(() => {
         if (!tasks?.data || !stages?.data) {
+            // !RETURN
             return {
                 unnasignedStage: [],
                 stages: [],
@@ -73,6 +76,7 @@ const ListTasks = () => {
             ),
         }));
 
+        // !RETURN
         return {
             unnasignedStage,
             columns: grouped,
@@ -80,7 +84,8 @@ const ListTasks = () => {
     }, [stages, tasks]);
 
     const handleAddCard = (args: { stageId: string }) => {};
-    console.log(taskStages.unnasignedStage)
+
+    // !RETURN
     return (
         <>
             <KanbanBoardContainer>
@@ -99,12 +104,19 @@ const ListTasks = () => {
                                 id={task.id}
                                 data={{ ...task, stageId: "unnasigned" }}
                             >
-                                <ProjectCard 
+                                <ProjectCardMemo
                                     {...task}
                                     dueDate={task.dueDate || undefined}
                                 />
                             </KanbanItem>
                         ))}
+                        {!taskStages.unnasignedStage.length && (
+                            <KanbanAddCardButton
+                                onClick={() =>
+                                    handleAddCard({ stageId: "unnasigned" })
+                                }
+                            />
+                        )}
                     </KanbanColumn>
                 </KanbanBoard>
             </KanbanBoardContainer>
