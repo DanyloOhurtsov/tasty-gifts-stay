@@ -1,42 +1,45 @@
+// Dashboard
 import UpcomingEvents from "./home/UpcomingEvents";
 import DealsChart from "./home/DealsChart";
+import DashboardTotalCountCard from "./home/DashboardTotalCountCard";
+import DashboardLatestActivities from "./home/DashboardLatestActivities";
+// Skeleton
 import UpcomingEventsSkeleton from "./skeleton/upcoming-events";
 import AccordionHeaderSkeleton from "./skeleton/accordion-header";
 import KanbanColumnSkeleton from "./skeleton/kanban";
 import LatestActivitiesSkeleton from "./skeleton/latest-activities";
 import ProjectCardSkeleton from "./skeleton/project-card";
-import DashboardTotalCountCard from "./home/DashboardTotalCountCard";
-import DashboardLatestActivities from "./home/DashboardLatestActivities";
+// Custom Reuse elements
 import SelectOptionWithAvatar from "./SelectOptionWithAvatar";
 import CustomAvatar from "./CustomAvatar";
 import { ContactStatusTag } from "./tags/ContactStatusTag";
 import { Text } from "./text";
+import { TextIcon, TextIconSvg } from "./TextIcon";
+// Kanban
 import KanbanColumn from "./tasks/kanban/column";
 import { KanbanBoardContainer, KanbanBoard } from "./tasks/kanban/board";
 import KanbanItem from "./tasks/kanban/item";
-import ProjectCard from "./tasks/kanban/card";
-import { TextIcon, TextIconSvg } from "./TextIcon";
-import KanbanAddCardButton from "./tasks/kanban/KanbanAddCardButton";
+import ProjectCard, { ProjectCardMemo } from "./tasks/kanban/card";
+import { KanbanAddCardButton } from "./tasks/kanban/KanbanAddCardButton";
 
+// !EXPORT
 export {
-    // Charts
+    // Dashboard
     UpcomingEvents,
     DealsChart,
+    DashboardTotalCountCard,
+    DashboardLatestActivities,
     // Skeleton
     UpcomingEventsSkeleton,
     AccordionHeaderSkeleton,
     KanbanColumnSkeleton,
     LatestActivitiesSkeleton,
     ProjectCardSkeleton,
-    // Dashboard
-    DashboardTotalCountCard,
-    DashboardLatestActivities,
     // Custom Reuse elements
     SelectOptionWithAvatar,
     CustomAvatar,
     ContactStatusTag,
     Text,
-    // Text Icon
     TextIcon,
     TextIconSvg,
     // Kanban
@@ -45,5 +48,6 @@ export {
     KanbanColumn,
     KanbanItem,
     ProjectCard,
-    KanbanAddCardButton
+    ProjectCardMemo,
+    KanbanAddCardButton,
 };

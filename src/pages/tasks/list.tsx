@@ -3,10 +3,9 @@ import {
     KanbanColumn,
     KanbanBoard,
     KanbanItem,
-    ProjectCard,
     KanbanAddCardButton,
+    ProjectCardMemo
 } from "@/components";
-import { ProjectCardMemo } from "@/components/tasks/kanban/card";
 import { TASKS_QUERY, TASK_STAGES_QUERY } from "@/graphql/queries";
 import { TaskStage } from "@/graphql/schema.types";
 import { TasksQuery } from "@/graphql/types";
