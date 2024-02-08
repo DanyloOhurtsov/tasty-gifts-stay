@@ -4,13 +4,16 @@ import {
     KanbanBoard,
     KanbanItem,
     KanbanAddCardButton,
-    ProjectCardMemo
+    ProjectCardMemo,
+    KanbanColumnSkeleton,
+    ProjectCardSkeleton,
 } from "@/components";
 import { TASKS_QUERY, TASK_STAGES_QUERY } from "@/graphql/queries";
 import { TaskStage } from "@/graphql/schema.types";
 import { TasksQuery } from "@/graphql/types";
 import { useList } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { count } from "console";
 import React from "react";
 
 const ListTasks = () => {
@@ -84,6 +87,10 @@ const ListTasks = () => {
 
     const handleAddCard = (args: { stageId: string }) => {};
 
+    const isLoading = isLoadingStages || isLoadingTasks;
+
+    if (isLoading) return <PageSkeleton />;
+
     // !RETURN
     return (
         <>
@@ -117,6 +124,27 @@ const ListTasks = () => {
                             />
                         )}
                     </KanbanColumn>
+                    {taskStages.columns?.map((column) => (
+                        <KanbanColumn
+                            key={column.id}
+                            id={column.id}
+                            title={column.title}
+                            count={column.tasks.length}
+                            onAddClick={() =>
+                                handleAddCard({ stageId: column.id })
+                            }
+                        >
+                            {!isLoading &&
+                                column.tasks.map((task) => (
+                                    <KanbanItem key={task.id} id={task.id}>
+                                        <ProjectCardMemo
+                                            {...task}
+                                            dueDate={task.dueDate || undefined}
+                                        />
+                                    </KanbanItem>
+                                ))}
+                        </KanbanColumn>
+                    ))}
                 </KanbanBoard>
             </KanbanBoardContainer>
         </>
@@ -124,3 +152,20 @@ const ListTasks = () => {
 };
 
 export default ListTasks;
+
+const PageSkeleton = () => {
+    const columnCount = 6;
+    const itemCount = 4;
+
+    return (
+        <KanbanBoardContainer>
+            {Array.from({ length: columnCount }).map((_, index) => (
+                <KanbanColumnSkeleton key={index}>
+                    {Array.from({ length: itemCount }).map((_, index) => (
+                        <ProjectCardSkeleton key={index} />
+                    ))}
+                </KanbanColumnSkeleton>
+            ))}
+        </KanbanBoardContainer>
+    );
+};
