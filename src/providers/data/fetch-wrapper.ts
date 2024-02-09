@@ -32,10 +32,9 @@ const getGraphQLErrors = (
 
     if ("errors" in body) {
         const errors = body?.errors;
-        
+
         const messeges = errors?.map((error) => error?.message)?.join("");
         const code = errors?.[0]?.extensions?.code;
-        console.log(messeges)
 
         return {
             message: messeges || JSON.stringify(errors),
@@ -51,8 +50,8 @@ export const fetchWrapper = async (url: string, options: RequestInit) => {
 
     const responseClone = response.clone();
     const body = await responseClone.json();
+
     const error = getGraphQLErrors(body);
-    console.log(await response.json())
 
     if (error) {
         throw error;

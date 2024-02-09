@@ -90,7 +90,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                             </FilterDropdown>
                         )}
                         render={(value, record) => (
-                            <Space>
+                            <Space key={record.id}>
                                 <CustomAvatar
                                     shape="square"
                                     name={record.name}
@@ -106,7 +106,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                         dataIndex="totalRevenue"
                         title="Open deals amount"
                         render={(value, company) => (
-                            <Text>
+                            <Text key={company.id}>
                                 {currencyNumber(
                                     company?.dealsAggregate?.[0].sum?.value || 0
                                 )}
@@ -118,7 +118,7 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
                         title="Actions"
                         fixed="right"
                         render={(value, company) => (
-                            <Space>
+                            <Space key={company.id}>
                                 <EditButton
                                     hideText
                                     size="small"

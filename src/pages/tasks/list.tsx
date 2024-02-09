@@ -15,7 +15,6 @@ import { TasksQuery } from "@/graphql/types";
 import { DragEndEvent } from "@dnd-kit/core";
 import { useList, useNavigation, useUpdate } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
-import { count } from "console";
 import React from "react";
 
 const ListTasks = ({ children }: React.PropsWithChildren) => {
@@ -130,10 +129,6 @@ const ListTasks = ({ children }: React.PropsWithChildren) => {
     const isLoading = isLoadingStages || isLoadingTasks;
     if (isLoading) return <PageSkeleton />;
 
-    const isLoading = isLoadingStages || isLoadingTasks;
-
-    if (isLoading) return <PageSkeleton />;
-
     // !RETURN
     return (
         <>
@@ -211,13 +206,12 @@ export default ListTasks;
 const PageSkeleton = () => {
     const columnCount = 6;
     const cardCount = 4;
+
     return (
         <KanbanBoardContainer>
             {Array.from({ length: columnCount }).map((_, index) => (
                 <KanbanColumnSkeleton key={index}>
-
                     {Array.from({ length: cardCount }).map((_, index) => (
-
                         <ProjectCardSkeleton key={index} />
                     ))}
                 </KanbanColumnSkeleton>
