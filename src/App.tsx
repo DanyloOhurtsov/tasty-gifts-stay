@@ -2,7 +2,6 @@ import { Authenticated, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { authProvider, dataProvider, liveProvider } from "./providers";
@@ -26,6 +25,9 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
 import { resources } from "./config/resources";
 import ListTasks from "./pages/tasks/list";
+import TasksCreatePage from "./pages/tasks/create";
+import TasksEditPage from "./pages/tasks/edit";
+import { useNotificationProvider } from "@refinedev/antd";
 
 function App() {
     return (
@@ -87,8 +89,22 @@ function App() {
                                             element={<EditPage />}
                                         />
                                     </Route>
-                                    <Route path="/tasks">
-                                        <Route index element={<ListTasks />} />
+                                    <Route
+                                        path="/tasks"
+                                        element={
+                                            <ListTasks>
+                                                <Outlet />
+                                            </ListTasks>
+                                        }
+                                    >
+                                        <Route
+                                            path="new"
+                                            element={<TasksCreatePage />}
+                                        />
+                                        <Route
+                                            path="edit/:id"
+                                            element={<TasksEditPage />}
+                                        />
                                     </Route>
                                 </Route>
                             </Routes>
