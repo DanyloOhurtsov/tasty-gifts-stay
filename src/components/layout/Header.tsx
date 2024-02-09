@@ -2,7 +2,6 @@ import { Layout, Space } from "antd";
 import CurrentUser from "./CurrentUser";
 
 const Header = () => {
-    
     const headerStyles: React.CSSProperties = {
         background: "#fff",
         display: "flex",

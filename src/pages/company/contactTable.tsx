@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 
-import { FilterDropdown, useTable } from "@refinedev/antd";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
@@ -18,6 +17,7 @@ import { COMPANY_CONTACTS_TABLE_QUERY } from "@/graphql/queries";
 
 import { CompanyContactsTableQuery } from "@/graphql/types";
 import { CustomAvatar, ContactStatusTag, Text } from "@/components";
+import { FilterDropdown, useTable } from "@refinedev/antd";
 
 export const CompanyContactsTable = () => {
     const params = useParams();

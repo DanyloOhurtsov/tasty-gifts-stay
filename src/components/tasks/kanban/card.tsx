@@ -100,7 +100,6 @@ const ProjectCard = ({ id, title, dueDate, users }: Props) => {
             <Card
                 size="small"
                 title={<Text ellipsis={{ tooltip: title }}>{title}</Text>}
-                onClick={() => edit()}
                 extra={
                     <Dropdown
                         trigger={["click"]}

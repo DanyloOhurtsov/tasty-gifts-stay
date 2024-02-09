@@ -7,7 +7,6 @@ type Props = {
     user: User;
 };
 
-// display a user's avatar and name in a tag
 export const UserTag = ({ user }: Props) => {
     return (
         <Tag
