@@ -15,7 +15,7 @@ import { useList } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import React from "react";
 
-const ListTasks = () => {
+const ListTasks = ({ children }: React.PropsWithChildren) => {
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
         resource: "taskStages",
         filters: [
@@ -132,8 +132,7 @@ const ListTasks = () => {
                                 handleAddCard({ stageId: column.id })
                             }
                         >
-                            {column.tasks.length ? (
-                                !isLoading &&
+                            {!isLoading &&
                                 column.tasks.map((task) => (
                                     <KanbanItem
                                         key={task.id}
@@ -145,18 +144,19 @@ const ListTasks = () => {
                                             dueDate={task.dueDate || undefined}
                                         />
                                     </KanbanItem>
-                                ))
-                            ) : (
+                                ))}
+                            {!column.tasks.length && (
                                 <KanbanAddCardButton
                                     onClick={() =>
-                                        handleAddCard({ stageId: "unnasigned" })
+                                        handleAddCard({ stageId: column.id })
                                     }
                                 />
-                            )} 
+                            )}
                         </KanbanColumn>
                     ))}
                 </KanbanBoard>
             </KanbanBoardContainer>
+            {children}
         </>
     );
 };
