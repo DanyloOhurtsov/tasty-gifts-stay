@@ -18,10 +18,6 @@ export const getDateColor = (args: {
         return "warning";
     }
 
-    if (date.isAfter) {
-      return 'processing'
-    }
-
     // ?? is the nullish coalescing operator. It returns the right-hand side operand when the left-hand side is null or undefined.
     return args.defaultColor ?? "default";
 };
