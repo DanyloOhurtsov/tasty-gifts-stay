@@ -8,15 +8,19 @@ import {
     KanbanColumnSkeleton,
     ProjectCardSkeleton,
 } from "@/components";
+import { UPDATE_TASK_STAGE_MUTATION } from "@/graphql/mutations";
 import { TASKS_QUERY, TASK_STAGES_QUERY } from "@/graphql/queries";
 import { TaskStage } from "@/graphql/schema.types";
 import { TasksQuery } from "@/graphql/types";
-import { useList } from "@refinedev/core";
+import { DragEndEvent } from "@dnd-kit/core";
+import { useList, useNavigation, useUpdate } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { count } from "console";
 import React from "react";
 
-const ListTasks = () => {
+const ListTasks = ({ children }: React.PropsWithChildren) => {
+    const { replace } = useNavigation();
+
     const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
         resource: "taskStages",
         filters: [
@@ -58,6 +62,8 @@ const ListTasks = () => {
         },
     });
 
+    const { mutate: updateTask } = useUpdate();
+
     const taskStages = React.useMemo(() => {
         if (!tasks?.data || !stages?.data) {
             // !RETURN
@@ -85,7 +91,44 @@ const ListTasks = () => {
         };
     }, [stages, tasks]);
 
-    const handleAddCard = (args: { stageId: string }) => {};
+    const handleAddCard = (args: { stageId: string }) => {
+        const path =
+            args.stageId === "unnasigned"
+                ? "/tasks/new"
+                : `/tasks/new?stageId=${args.stageId}`;
+
+        replace(path)
+    };
+
+    const handleOnDragEnd = (event: DragEndEvent) => {
+        let stageId = event.over?.id as undefined | string | null;
+
+        const taskId = event.active.id as string;
+
+        const taskStageId = event.active.data.current?.stageId;
+
+        if (taskStageId === stageId) return;
+
+        if (stageId === "unnasigned") {
+            stageId = null;
+        }
+
+        updateTask({
+            resource: "tasks",
+            id: taskId,
+            values: {
+                stageId: stageId,
+            },
+            successNotification: false,
+            mutationMode: "optimistic",
+            meta: {
+                gqlMutation: UPDATE_TASK_STAGE_MUTATION,
+            },
+        });
+    };
+
+    const isLoading = isLoadingStages || isLoadingTasks;
+    if (isLoading) return <PageSkeleton />;
 
     const isLoading = isLoadingStages || isLoadingTasks;
 
@@ -95,7 +138,7 @@ const ListTasks = () => {
     return (
         <>
             <KanbanBoardContainer>
-                <KanbanBoard>
+                <KanbanBoard onDragEnd={handleOnDragEnd}>
                     <KanbanColumn
                         id="unnasigned"
                         title={"unnasigned"}
@@ -136,17 +179,29 @@ const ListTasks = () => {
                         >
                             {!isLoading &&
                                 column.tasks.map((task) => (
-                                    <KanbanItem key={task.id} id={task.id}>
+                                    <KanbanItem
+                                        key={task.id}
+                                        id={task.id}
+                                        data={task}
+                                    >
                                         <ProjectCardMemo
                                             {...task}
                                             dueDate={task.dueDate || undefined}
                                         />
                                     </KanbanItem>
                                 ))}
+                            {!column.tasks.length && (
+                                <KanbanAddCardButton
+                                    onClick={() =>
+                                        handleAddCard({ stageId: column.id })
+                                    }
+                                />
+                            )}
                         </KanbanColumn>
                     ))}
                 </KanbanBoard>
             </KanbanBoardContainer>
+            {children}
         </>
     );
 };
@@ -155,13 +210,14 @@ export default ListTasks;
 
 const PageSkeleton = () => {
     const columnCount = 6;
-    const itemCount = 4;
-
+    const cardCount = 4;
     return (
         <KanbanBoardContainer>
             {Array.from({ length: columnCount }).map((_, index) => (
                 <KanbanColumnSkeleton key={index}>
-                    {Array.from({ length: itemCount }).map((_, index) => (
+
+                    {Array.from({ length: cardCount }).map((_, index) => (
+
                         <ProjectCardSkeleton key={index} />
                     ))}
                 </KanbanColumnSkeleton>

@@ -1,4 +1,3 @@
-import { SaveButton, useForm } from "@refinedev/antd";
 import { HttpError } from "@refinedev/core";
 import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
@@ -15,6 +14,7 @@ import {
     UpdateUserMutation,
     UpdateUserMutationVariables,
 } from "@/graphql/types";
+import { SaveButton, useForm } from "@refinedev/antd";
 
 type Props = {
     opened: boolean;

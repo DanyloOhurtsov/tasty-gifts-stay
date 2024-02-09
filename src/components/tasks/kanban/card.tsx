@@ -7,6 +7,7 @@ import {
     EyeOutlined,
     MoreOutlined,
 } from "@ant-design/icons";
+import { useDelete, useNavigation } from "@refinedev/core";
 import {
     Button,
     Card,
@@ -36,7 +37,8 @@ type Props = {
 const ProjectCard = ({ id, title, dueDate, users }: Props) => {
     const { token } = theme.useToken();
 
-    const edit = () => {};
+    const { edit } = useNavigation();
+    const { mutate: deleteTask } = useDelete();
 
     const dropdownItems = useMemo(() => {
         const dropdownItems: MenuProps["items"] = [
@@ -45,7 +47,7 @@ const ProjectCard = ({ id, title, dueDate, users }: Props) => {
                 key: 1,
                 icon: <EyeOutlined />,
                 onClick: () => {
-                    edit();
+                    edit("tasks", id, "replace");
                 },
             },
             {
@@ -53,7 +55,15 @@ const ProjectCard = ({ id, title, dueDate, users }: Props) => {
                 label: "Delete card",
                 key: 2,
                 icon: <DeleteOutlined />,
-                onClick: () => {},
+                onClick: () => {
+                    deleteTask({
+                        resource: "tasks",
+                        id,
+                        meta: {
+                            operation: "task",
+                        },
+                    });
+                },
             },
         ];
 
@@ -90,7 +100,6 @@ const ProjectCard = ({ id, title, dueDate, users }: Props) => {
             <Card
                 size="small"
                 title={<Text ellipsis={{ tooltip: title }}>{title}</Text>}
-                onClick={() => edit()}
                 extra={
                     <Dropdown
                         trigger={["click"]}

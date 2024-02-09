@@ -1,12 +1,12 @@
 import { Form, Input, Modal, Select } from "antd";
 import { CompanyList } from "./list";
-import { useModalForm, useSelect } from "@refinedev/antd";
 import { useGo } from "@refinedev/core";
 import { CREATE_COMPANY_MUTATION } from "@/graphql/mutations";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import { SelectOptionWithAvatar } from "@/components";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { UsersSelectQuery } from "@/graphql/types";
+import { useModalForm, useSelect } from "@refinedev/antd";
 
 export const CreateComp = () => {
     const go = useGo();

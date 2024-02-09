@@ -17,11 +17,8 @@ const SelectOptionWithAvatar = ({ name, avatarUrl, shape }: Props) => {
             }}
         >
             <CustomAvatar shape={shape} name={name} src={avatarUrl} />
-            <Text>
-                {name}
-            </Text>
+            <Text>{name}</Text>
         </div>
     );
 };
-
 export default SelectOptionWithAvatar;

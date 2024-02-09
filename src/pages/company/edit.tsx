@@ -1,5 +1,4 @@
 import { Col, Form, Input, InputNumber, Row, Select } from "antd";
-import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { UPDATE_COMPANY_MUTATION } from "@/graphql/mutations";
 import { getNameInitials } from "@/utilities";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
@@ -12,6 +11,7 @@ import {
     industryOptions,
 } from "@/constants";
 import { CompanyContactsTable } from "./contactTable";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 
 export const EditPage = () => {
     const { saveButtonProps, formProps, formLoading, queryResult } = useForm({
